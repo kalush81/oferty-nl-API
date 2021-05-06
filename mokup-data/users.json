@@ -1,0 +1,38 @@
+[
+  {
+    "userID": "1",
+    "email": "dominika.hennig94@gmail.com",
+    "password": "1234",
+    "isPremiun": false,
+    "city": "Tilburg",
+    "avatar": "https://profile/dominikahennig/avatar",
+    "oferts": [],
+    "services": [
+      "5xyz2"
+    ]
+  },
+  {
+    "userID": "2",
+    "email": "krzysiek.kaluza@gmail.com",
+    "password": "1234",
+    "isPremiun": false,
+    "city": "Amsterdam",
+    "avatar": "https://profile/krzysiekkaluza/avatar",
+    "oferts": [
+      "5abc1"
+    ],
+    "services": []
+  },
+  {
+    "userID": "3",
+    "email": "kalush@onet.pl",
+    "password": "1234",
+    "isPremiun": true,
+    "city": "Rotterdam",
+    "avatar": "https://profile/kalush/avatar",
+    "oferts": [],
+    "services": [
+      "5xyz1"
+    ]
+  }
+]

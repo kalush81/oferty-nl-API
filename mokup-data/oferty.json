@@ -1,0 +1,18 @@
+[
+  {
+    "offerId": "5abc1",
+    "category": "wypożyczalnia",
+    "title": "wiertarka",
+    "isNegotiable": true,
+    "description": "wypożycze super fajną wiertarkę wielofunkcyjną",
+    "hourly_price": 5,
+    "daily_price": 40,
+    "userId": "2",
+    "main_image_url": "",
+    "other_img_urls": "",
+    "isWholeCountry": true
+  },
+  {
+
+  }
+]
