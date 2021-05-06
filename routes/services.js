@@ -1,13 +1,18 @@
 const servicesRouter = require('express').Router();
 const services = require("../mokup-data/services.json");
 
-servicesRouter.get("/services", (req, res) => {
+servicesRouter.param('id', (req, res, next, id) => {
+    const service = services.find(s => s.serviceId === id);
+    if (!service) return res.status(404).send('service not found')
+    req.service = service
+    next();
+})
+
+servicesRouter.get("/", (req, res) => {
     res.send(services);
 });
-servicesRouter.get("/services/:id", (req, res) => {
-    const item = services.find((item) => item.serviceId === req.params.id);
-    if (!item) return res.status(404).send("service item not found");
-    res.send(item);
+servicesRouter.get("/:id", (req, res) => {
+    res.send(req.service);
 });
 
 module.exports = servicesRouter;
