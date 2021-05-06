@@ -3,7 +3,7 @@ const rentals = require("../mokup-data/oferty.json");
 
 let num = 5;
 
-const editBeforCreatingRentalItem = (req, res, next) => {
+const editBeforPush = (req, res, next) => {
     num++;
     const item = {
         offerId: '5abc'+num,
@@ -17,6 +17,11 @@ const editBeforCreatingRentalItem = (req, res, next) => {
     req.item = item;
     next();
 }
+
+rentalsRouter.use((req, res, next) => {
+    console.log('was requested for rental route')
+    next()
+})
 
 rentalsRouter.param('id', (req, res, next, id) => {
     const item = rentals.find(item => item.offerId === id)
@@ -35,7 +40,7 @@ rentalsRouter.get("/:id", (req, res) => {
     res.send(req.item);
 });
 
-rentalsRouter.post("/", editBeforCreatingRentalItem, (req, res) => {
+rentalsRouter.post("/", editBeforPush, (req, res) => {
     rentals.push(req.item)
     res.send(req.item);
 });

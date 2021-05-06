@@ -23,7 +23,10 @@ app.use("/services", servicesRouter);
 
 //error handling middleware
 app.use((err, req, res, next) => {
-    if (err) console.error('POJAWIL SIE BLAD JAKIS: ', err)
+    if (err) {
+        console.error('POJAWIL SIE BLAD JAKIS: ', err)
+        res.status(500).send(err) //server error
+    } 
 });
 
 app.use((req, res) => {

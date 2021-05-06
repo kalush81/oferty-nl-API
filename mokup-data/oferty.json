@@ -13,6 +13,16 @@
     "isWholeCountry": true
   },
   {
-
+    "offerId": "5abc2",
+    "category": "wypożyczalnia",
+    "title": "kosiarka do trway",
+    "isNegotiable": false,
+    "description": "wypożycze super fajną kosiare, skosisz za jej pomocą kilka stadionów Wembley!",
+    "hourly_price": 2,
+    "daily_price": 20,
+    "userId": "1",
+    "main_image_url": "",
+    "other_img_urls": "",
+    "isWholeCountry": true
   }
 ]
