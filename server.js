@@ -24,7 +24,7 @@ app.use("/services", servicesRouter);
 //error handling middleware
 app.use((err, req, res, next) => {
     if (err) {
-        console.error('POJAWIL SIE BLAD JAKIS: ', err)
+        console.error('CHRIS, INTERNALL ERROR !!!: ', err)
         res.status(500).send(err) //server error
     } 
 });
@@ -33,6 +33,4 @@ app.use((req, res) => {
     res.send("url not exist");
 });
 
-app.listen(3000, () => {
-    console.log("server is up and running on 3000");
-});
+module.exports = app
