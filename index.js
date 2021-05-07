@@ -1,6 +1,8 @@
-const app = require('./server/server');
-const config = require('./server/config/config')
-console.log('node env', process.env.MY_VAR)
+const app = require("./server/server");
+const config = require("./server/config/config");
+
+const logger  = require('./server/util/logger');
+
 app.listen(config.port, () => {
-    console.log(`server is listening on port: ${config.port}`)
-})
+    logger.log(`server is listening on port: ${config.port}`)
+});
