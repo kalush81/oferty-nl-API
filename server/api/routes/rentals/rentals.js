@@ -18,8 +18,8 @@ const editBeforPush = (req, res, next) => {
   };
   req.item = item;
   logger.log(`rental item has been edited
-        offerId is now ${item.offerId.yellow}
-        `);
+        offerId is now`, item
+        );
   next();
 };
 

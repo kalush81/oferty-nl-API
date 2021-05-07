@@ -1,12 +1,11 @@
 const config = require('../config/config');
+require('colors');
 
 const logger = {
-    log(text) {
+    log(...args) {
         //check if logging was set to true or false while setting up configuration
-        config.logging ? console.log(text) : () => {}
+        config.logging ? args.map(arg => console.log(arg)) : () => {}
     }
 }
-//check if the config is correctly set
-console.log('config obj:', config)
 
 module.exports = logger

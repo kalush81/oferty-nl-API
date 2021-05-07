@@ -1,6 +1,7 @@
 const _ = require('lodash');
 
 const config = {
+    email: process.env.EMAIL || null,
     dev: 'development',
     prod: 'production',
     test: 'testing',
@@ -17,4 +18,4 @@ const configEnv  = {
     logging: require(`./${config.env}`).logging
 }
 
-module.exports = _.merge(config, configEnv)
+module.exports = _.merge(config, configEnv);

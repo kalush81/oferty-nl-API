@@ -1,22 +1,17 @@
 const express = require("express");
-const api = require('./api');
+const emailMeError = require('./config/config').email
+const errHandler =  require("./middleware/errorHandlerMiddleware");
 
+const api = require('./api');
 const app = express();
 
+//sets up all app level middlewares
 require('./middleware/appMiddleware')(app);
 
+//api all routes
 app.use('/api', api)
 
 //error handling middleware
-app.use((err, req, res, next) => {
-    if (err) {
-        console.error('CHRIS, INTERNALL ERROR !!!: ', err)
-        res.status(500).send(err) //server error
-    } 
-});
-
-app.use((req, res) => {
-    res.send("url not exist");
-});
+app.use(errHandler(emailMeError));
 
 module.exports = app
