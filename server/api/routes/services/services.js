@@ -1,5 +1,5 @@
 const servicesRouter = require('express').Router();
-const services = require("../mokup-data/services.json");
+const services = require("../../mokup-data/services.json");
 
 servicesRouter.use((req, res, next) => {
     console.log('was requested for route')

@@ -1,14 +1,15 @@
 const chai = require('chai').expect;
-const should = require('chai').should();
 const request = require('supertest');
-require('colors')
+const rentals = require('./server/api/mokup-data/oferty.json');
 
-const app = require('./server');
+const app = require('./server/server');
+
+require('colors');
 
 describe('[  RENTALS  ]'.yellow, () => {
     it('should get all offers', (done) => {
         request(app)
-        .get('/rentals')
+        .get('/api/rentals')
         //.set('Content-Type', 'aplication')
         //.expect('Content-Type', /json/)
         //.expect(200)
@@ -26,7 +27,7 @@ describe('[  RENTALS  ]'.yellow, () => {
             userId: 2
         }
         request(app)
-        .post('/rentals')
+        .post('/api/rentals')
         .send(offer)
         .set('Accept', 'aplication/json')
         .expect('Content-Type', /json/)

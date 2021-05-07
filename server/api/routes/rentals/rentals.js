@@ -1,5 +1,5 @@
 const rentalsRouter = require('express').Router();
-const rentals = require("../mokup-data/oferty.json");
+const rentals = require("../../mokup-data/oferty.json");
 
 let num = 5;
 
