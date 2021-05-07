@@ -1,11 +1,11 @@
 const express = require("express");
-const apiRouters = require('./api/api');
+const api = require('./api');
 
 const app = express();
 
 require('./middleware/appMiddleware')(app);
 
-app.use('/api', apiRouters)
+app.use('/api', api)
 
 //error handling middleware
 app.use((err, req, res, next) => {
