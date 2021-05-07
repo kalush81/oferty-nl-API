@@ -1,5 +1,20 @@
+const _ = require('lodash');
+
 const config = {
+    dev: 'development',
+    prod: 'production',
+    test: 'testing',
     port: process.env.PORT || 3000
+};
+
+//chec if NODE_ENV is set, if not then deafult to config.dev 
+process.env.NODE_ENV = process.env.NODE_ENV || config.dev
+
+//set config.env to whatever NODE_ENV is
+config.env = process.env.NODE_ENV
+
+const configEnv  = {
+    logging: require(`./${config.env}`).logging
 }
 
-module.exports = config
+module.exports = _.merge(config, configEnv)
