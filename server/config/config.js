@@ -5,7 +5,7 @@ const config = {
     dev: 'development',
     prod: 'production',
     test: 'testing',
-    port: process.env.PORT || 3000
+    port: process.env.PORT || 4000
 };
 
 //chec if NODE_ENV is set, if not then deafult to config.dev 
