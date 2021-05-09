@@ -1,14 +1,12 @@
 const mongoose = require('mongoose')
 
-const rentalSchema = new mongoose.Schema({
+const serviceSchema = new mongoose.Schema({
     title: String,
     description: String,
-    hourlyPrice: Number,
-    dailyPrice: Number,
     isWholeCountry: Boolean,
     isNegotiable: Boolean,
-    mainImgUrl: String,
-    extraImgUrls: [ String ],
+    price: Number,
+    pricing_plan: String,
     issuer: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
@@ -16,6 +14,6 @@ const rentalSchema = new mongoose.Schema({
     }
 });
 
-const RentalModel = mongoose.model('rental', rentalSchema)
+const ServiceModel = mongoose.model('service', serviceSchema)
 
-module.exports = RentalModel
+module.exports = ServiceModel
