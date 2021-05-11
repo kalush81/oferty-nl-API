@@ -1,17 +1,18 @@
 const express = require("express");
-const emailMeError = require('./config/config').email
-const errHandler =  require("./middleware/errorHandlerMiddleware");
+const path = require('path');
+const config = require("./config/config");
+const errHandler = require("./middleware/errorHandlerMiddleware");
+const api = require("./api");
+const logger = require("./util/logger");
 
-const api = require('./api');
 const app = express();
 
-//sets up all app level middlewares
-require('./middleware/appMiddleware')(app);
+app.use("/api", api);
 
-//api all routes
-app.use('/api', api)
+//sets up all app level middlewares
+require("./middleware/appMiddleware")(app);
 
 //error handling middleware
-app.use(errHandler(emailMeError));
+app.use(errHandler(config.email));
 
-module.exports = app
+module.exports = app;

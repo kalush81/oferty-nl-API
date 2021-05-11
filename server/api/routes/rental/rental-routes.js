@@ -1,52 +1,40 @@
 const rentalsRouter = require("express").Router();
-const rentals = require("../../mokup-data/oferty.json");
+const RentalModel = require("./rental-model");
 const logger = require("../../../util/logger");
-require('colors')
+require("colors");
 
-let num = 5;
-
-const editBeforPush = (req, res, next) => {
-  num++;
-  const item = {
-    offerId: "5abc" + num,
-    category: "wypożyczalnia",
-    title: req.body.title,
-    description: req.body.title,
-    hourly_price: req.body.hourly_price || "not set",
-    daily_price: req.body.daily_price || "not set",
-    userId: req.body.userId,
-  };
-  req.item = item;
-  logger.log(`rental item has been edited
-        offerId is now`, item
-        );
-  next();
-};
-
-rentalsRouter.use((req, res, next) => {
-  next();
-});
-
-rentalsRouter.param("id", (req, res, next, id) => {
-  const item = rentals.find((item) => item.offerId === id);
+rentalsRouter.param("id", async (req, res, next, id) => {
+  const item = await RentalModel.findById(id);
   if (!item) {
-    return res.status(404).send("offer not found");
+    return res.status(404).send(`rental item wit id: ${id} not found`);
   }
   req.item = item;
   next();
 });
 
-rentalsRouter.get("/", (req, res) => {
-  res.send(rentals);
+rentalsRouter.get("/", async function getAllOffers(req, res) {
+  try {
+    const offers = await RentalModel.find({});
+    res.send(offers);
+  } catch (error) {
+    logger.log(error.message);
+    res.send(error.message);
+  }
 });
 
-rentalsRouter.get("/:id", (req, res) => {
-  res.send(req.item);
+rentalsRouter.get("/:id", function getOfferById(req, res) {
+  return res.send({ msg: "here is the rental item", item: req.item });
 });
 
-rentalsRouter.post("/", editBeforPush, (req, res) => {
-  rentals.push(req.item);
-  res.send(req.item);
+rentalsRouter.post("/", async function create(req, res) {
+  try {
+    const rental = await new RentalModel(req.item);
+    await rental.save();
+    return res.send(req.item);
+  } catch (error) {
+    logger.log(error);
+    res.send("your item could not be saved");
+  }
 });
 
 module.exports = rentalsRouter;

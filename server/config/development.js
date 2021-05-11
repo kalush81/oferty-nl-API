@@ -1,3 +1,3 @@
 module.exports = {
-    logging: true
-}
+  logging: true,
+};
