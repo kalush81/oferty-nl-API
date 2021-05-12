@@ -6,7 +6,7 @@ const serviceSchema = new mongoose.Schema({
   isWholeCountry: Boolean,
   isNegotiable: Boolean,
   price: Number,
-  pricing_plan: String,
+  pricingPlan: String,
   issuer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",

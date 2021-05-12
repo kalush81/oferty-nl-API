@@ -5,7 +5,7 @@ router.use("/services", require("./routes/service/service-routes"));
 router.use("/users", require("./routes/user/user-routes"));
 
 router.use((req, res) => {
-  res.send("url not exist");
+  res.send("this url doesn't exist");
 });
 
 module.exports = router;

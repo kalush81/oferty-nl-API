@@ -26,11 +26,12 @@ rentalsRouter.get("/:id", function getOfferById(req, res) {
   return res.send({ msg: "here is the rental item", item: req.item });
 });
 
-rentalsRouter.post("/", async function create(req, res) {
+rentalsRouter.post("/", async (req, res) => {
+  console.log('req to post rentals')
   try {
-    const rental = await new RentalModel(req.item);
+    const rental = await new RentalModel(req.body);
     await rental.save();
-    return res.send(req.item);
+    return res.send(req.body);
   } catch (error) {
     logger.log(error);
     res.send("your item could not be saved");
