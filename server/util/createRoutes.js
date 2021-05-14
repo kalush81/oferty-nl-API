@@ -3,12 +3,12 @@ module.exports = function (controller, router) {
 
   router
     .route("/")
-    .get(controller.getAll)
+    .get(controller.getAll || (()=>{}))
     .post(controller.post);
 
   router
     .route("/:id")
     .get(controller.getOne)
-    .put(controller.update)
-    .delete(controller.delete);
+    .put(controller.update || (()=>{}))
+    .delete(controller.delete || (()=>{}));
 };

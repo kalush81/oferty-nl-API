@@ -7,7 +7,7 @@ const config = {
   test: "testing",
   port: process.env.PORT || 4000,
   db: {
-    uri: process.env.MONGODB_URI,
+    uri: "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false"
   },
 };
 
