@@ -7,9 +7,8 @@ exports.params = async (req, res, next, id) => {
     if (!service) return res.send("no service with that ID");
     req.service = service;
     next();
-  } catch (error) {
-    logger.log(error);
-    res.send("this is even not VALID id! ");
+  } catch (err) {
+    next(err)
   }
 };
 
