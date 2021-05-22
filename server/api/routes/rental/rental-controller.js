@@ -4,23 +4,26 @@ const logger = require("../../../util/logger");
 exports.params = async (req, res, next, id) => {
   try {
     const rentalItem = await RentalModel.findById(id);
-    if (!rentalItem) return res.send("no renatlItem with that ID");
+    
+    const withIssuer = await RentalModel.populate(rentalItem, [{path: 'issuer', select: 'email'}])
+    //withIssuer.issuer.rentals.push(withIssuer._id);
+    console.log(withIssuer)
+    if (!rentalItem) return res.send("no rentalItem with that ID");
     req.rentalItem = rentalItem;
     next();
-  } catch (error) {
-    logger.log(error);
-    res.send("this is even not VALID id! ");
+  } catch (err) {
+    next(err)
   }
 };
 
-exports.getAll = async (req, res, next) => {
+exports.getAll =  async (req, res, next) => {
   try {
     const rentalItems = await RentalModel.find({});
     res.send(rentalItems);
-  } catch (error) {
-    logger.log(error);
-    res.send("could not get all of them")
-  }
+   } catch (error) {
+     logger.log(error);
+     res.send("could not get all of them")
+   }
 };
 
 exports.getOne = (req, res, next) => {
@@ -47,9 +50,10 @@ exports.update = async (req, res, next) => {
   }
 };
 
-exports.post = async (req, res) => {
+exports.create = async function createRentalItem (req, res) {
   try {
-    const rentalItem = await new RentalModel(req.body);
+    const rentalItem = new RentalModel(req.body);
+    //console.log('***', rentalItem.shortTitle)
     await rentalItem.save();
     logger.log(rentalItem);
     res.send(rentalItem);

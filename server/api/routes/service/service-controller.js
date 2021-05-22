@@ -47,9 +47,9 @@ exports.update = async (req, res, next) => {
   }
 };
 
-exports.post = async (req, res) => {
+exports.create = async function createServiceItem (req, res)  {
   try {
-    const rental = await new ServiceModel(req.body);
+    const rental = new ServiceModel(req.body);
     await rental.save();
     logger.log(rental);
     res.send(rental);

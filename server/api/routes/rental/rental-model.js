@@ -18,4 +18,10 @@ const rentalSchema = new mongoose.Schema({
 
 const RentalModel = mongoose.model("rental", rentalSchema);
 
+// rentalSchema.set('toJSON', { virtuals: true })
+
+// rentalSchema.virtual('shortTitle').get(function() {
+//   return this.title.substr(0,2) + ' I was shortend'
+// });
+
 module.exports = RentalModel;

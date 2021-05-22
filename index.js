@@ -6,7 +6,6 @@ require("mongoose")
   .connect(config.db.uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     logger.log("connected to db")
-    
   })
   .catch((err) => {
     logger.log('problem while connecting with db ', err)
