@@ -8,6 +8,6 @@ module.exports = function (controller, router) {
   router
     .route("/:id")
     .get(controller.getOne)
-    .put(controller.update || (() => {}))
+    .put(controller.update)
     .delete(controller.delete || (() => {}));
 };

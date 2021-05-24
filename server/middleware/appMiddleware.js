@@ -8,8 +8,8 @@ const appMiddleware = (app) => {
   app.use(express.static("public"));
   app.use((req, res, next) => {
     JSON.stringify(req.body).length > 1900 // increase the value of incoming body later!
-      ? report(res)
-      : next();
+      ? report(res)                        // but this is expensive operation, move this validation
+      : next();                            // to mongoose hook pre('validate') 
   });
 };
 

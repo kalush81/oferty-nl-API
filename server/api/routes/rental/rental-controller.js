@@ -1,17 +1,18 @@
 const RentalModel = require("./rental-model");
 const logger = require("../../../util/logger");
 
-exports.params = async (req, res, next, id) => {
+exports.params = async function find_populate_append (req, res, next, id) {
   try {
-    const rentalItem = await RentalModel.findById(id);
-    await RentalModel.populate(rentalItem, [
-      { path: "issuer" , select: ["email", "phone"]},
-    ]);
+    const rentalItem = await RentalModel
+      .findById(id) 
+      .populate([{ path: "issuer", select: ["email", "phone"] }]);
+
     if (!rentalItem) return res.send("no rentalItem with that ID");
-    req.rentalItem = rentalItem;
-    next();
+      req.rentalItem = rentalItem;
+      next(); 
+
   } catch (err) {
-    next(err);
+      next(err);
   }
 };
 
@@ -19,6 +20,7 @@ exports.getAll = async (req, res, next) => {
   try {
     const rentalItems = await RentalModel.find({});
     res.send(rentalItems);
+
   } catch (err) {
     next(err);
   }
@@ -37,6 +39,7 @@ exports.update = async (req, res, next) => {
       { new: true }
     );
     res.send(rentalItemUpdated);
+
   } catch (err) {
     next(err);
   }
@@ -47,6 +50,7 @@ exports.create = async function createRentalItem(req, res) {
     const rentalItem = new RentalModel(req.body);
     await rentalItem.save();
     res.send(rentalItem);
+
   } catch (err) {
     next(err);
   }
@@ -58,8 +62,8 @@ exports.delete = async (req, res) => {
       select: "title",
     });
     res.send(title);
+
   } catch (err) {
     next(err);
   }
 };
-
