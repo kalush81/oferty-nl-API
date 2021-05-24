@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
-const { secrets, expireTime } = require("../../../config");
+const config = require("../../../config/config");
 
 exports.signToken = function (id) {
-  return jwt.sign({ _id: id }, secrets, expireTime);
+  return jwt.sign({ _id: id, iat: config.expireTime }, config.secrets.jwt );
 };

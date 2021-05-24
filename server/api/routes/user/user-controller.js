@@ -1,5 +1,6 @@
 const logger = require("../../../util/logger");
 const UserModel = require("./user-model");
+const { signToken } = require("../auth/auth");
 
 exports.params = async (req, res, next, id) => {
   try {
@@ -30,7 +31,9 @@ exports.create = async function createUser(req, res, next) {
   try {
     const user = new UserModel(req.body);
     await user.save();
-    res.send(user);
+    //res.send(user); //send token instead of entire user object !
+    const token = signToken(user._id);
+    res.send(token);
   } catch (err) {
     next(err)
   }
