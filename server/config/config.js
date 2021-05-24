@@ -9,6 +9,10 @@ const config = {
   db: {
     uri: "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false"
   },
+  secrets: {
+    jwt:  process.env.JWT || 'blahblah'
+  },
+  expireTime: 24 * 60 * 10
 };
 
 //chec if NODE_ENV is set, if not then deafult to config.dev
